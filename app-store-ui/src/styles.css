@@ -1,0 +1,606 @@
+@font-face {
+  font-family: Poppins;
+  src: url('../public/fonts/Poppins-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Poppins;
+  src: url('../public/fonts/Poppins-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500 900;
+  font-display: swap;
+}
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: Poppins, sans-serif;
+}
+body {
+  margin: 0;
+  background: #f5f5f5;
+}
+.shell {
+  min-height: 100vh;
+  font-family: Poppins, sans-serif;
+}
+.sidebar {
+  background: linear-gradient(to bottom, #1c4c75, #4288ba) !important;
+  position: sticky !important;
+  top: 0;
+  height: 100vh;
+}
+.brand {
+  display: flex;
+  height: 115px;
+  padding: 24px;
+  align-items: center;
+}
+.brand img {
+  width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+}
+.sidebar .ant-menu {
+  background: transparent;
+  color: #fff;
+}
+.sidebar .ant-menu-sub {
+  background: transparent !important;
+}
+.sidebar .ant-menu-item-selected {
+  color: #1c4c75;
+}
+.sidebar .ant-menu-item-disabled {
+  color: #b3b3b3;
+}
+.collapse-sidebar {
+  position: absolute;
+  bottom: 14px;
+  width: 100%;
+  color: #fff;
+}
+.header {
+  background: #fff;
+  padding: 0 24px;
+  height: 72px;
+  box-shadow: 0 2px 8px #f0f1f2;
+  z-index: 2;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 16px;
+}
+.navigator {
+  width: 200px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.navigator .ant-select-selector {
+  box-shadow: none !important;
+  border-radius: 0;
+}
+.header .searchIcon {
+  margin-right: 8px;
+}
+.navigator-breadcrumb {
+  color: #4288ba;
+  font-size: 12px;
+}
+.firmware-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.platform-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 14px 24px 0;
+  background: #fff;
+}
+.platform-strip a {
+  display: flex;
+  gap: 7px;
+  padding: 0 0 12px;
+  color: #636e72;
+  border-bottom: 2px solid transparent;
+}
+.platform-strip a.active {
+  color: #4288ba;
+  border-bottom-color: #4288ba;
+}
+.main {
+  margin: 18px 22px 0;
+  padding: 24px;
+  min-height: 0;
+  flex: 1;
+  background: #fff;
+}
+.footer {
+  text-align: center;
+  color: #636e72;
+  padding: 20px;
+  font-size: 12px;
+}
+.startup-loading {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.loading {
+  padding: 72px 24px;
+  display: grid;
+  place-items: center;
+}
+.scene-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.search-panel {
+  margin: 22px 0;
+  border: 0;
+  background: #f5f5f5;
+}
+.search-panel .ant-form {
+  gap: 12px;
+}
+.search-panel .ant-select {
+  min-width: 180px;
+}
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 168px);
+  gap: 20px;
+  padding-top: 6px;
+}
+.app-card {
+  background: #fafafa;
+  border: 0;
+}
+.app-card .ant-card-body {
+  padding: 12px;
+}
+.card-open {
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  color: inherit;
+}
+.app-icon {
+  display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 22px;
+}
+.app-name {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 16px;
+}
+.muted {
+  color: #858587;
+  font-size: 12px;
+}
+.card-actions {
+  width: 100%;
+  justify-content: space-between;
+}
+.card-actions .ant-rate {
+  font-size: 11px;
+  color: #777;
+}
+.heart.active {
+  color: #ffa940;
+}
+.heart {
+  color: #b3b3b3;
+}
+.catalogue-empty {
+  min-height: 54vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.catalogue-empty h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #636e72;
+}
+.catalogue-empty p {
+  color: #8c8c8c;
+  font-size: 13px;
+}
+.scroll-sentinel {
+  min-height: 8px;
+}
+.release-card {
+  border-color: #fafafa;
+}
+.release-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 20px 0 35px;
+}
+.release-identity {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+.release-icon {
+  width: 210px;
+  height: 210px;
+  object-fit: contain;
+}
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-top: 0;
+}
+.release-meta {
+  display: flex;
+  gap: 22px;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+.release-meta strong {
+  display: block;
+  color: #65a2c7;
+  font-weight: 400;
+}
+.release-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.chips-row {
+  display: flex;
+  gap: 22%;
+  padding: 20px 0;
+}
+.chips-row h3,
+.overview-section h3 {
+  font-size: 13px;
+  font-weight: 500;
+}
+.screenshots {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 35px 0;
+}
+.screenshots .ant-image {
+  flex-shrink: 0;
+}
+.screenshots img {
+  max-width: 260px;
+  height: 320px;
+  object-fit: contain;
+  border-radius: 16px;
+}
+.overview-section {
+  padding: 32px 0;
+}
+.spaced {
+  margin-bottom: 24px;
+}
+.wide {
+  width: 100%;
+}
+.wizard-identity {
+  display: flex;
+  gap: 30px;
+  padding: 40px 0;
+  align-items: flex-start;
+}
+.wizard-identity img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+}
+.operation-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 0;
+}
+.subscriptions-layout {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+.subscriptions-layout aside {
+  width: 210px;
+  flex-shrink: 0;
+}
+.subscriptions-layout aside section {
+  margin-bottom: 30px;
+}
+.subscription-content {
+  min-width: 0;
+  flex: 1;
+}
+.firmware-card {
+  min-height: 220px;
+}
+.firmware-card h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.firmware-summary {
+  padding: 40px 0 70px;
+}
+.firmware-modal-identity {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 20px;
+}
+.firmware-modal-identity img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#1c4c75, #4288ba);
+  font-family: Poppins, sans-serif;
+}
+.login-logo {
+  width: 200px;
+  max-height: 90px;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+.login-card {
+  width: min(420px, calc(100vw - 32px));
+}
+@media (max-width: 900px) {
+  .main {
+    margin: 12px;
+    padding: 16px;
+  }
+  .header {
+    padding: 0 12px;
+  }
+  .release-header {
+    flex-direction: column;
+  }
+  .release-actions {
+    align-items: flex-start;
+  }
+  .release-icon,
+  .wizard-identity img {
+    width: 130px;
+    height: 130px;
+  }
+  .subscriptions-layout {
+    flex-direction: column;
+  }
+  .subscriptions-layout aside {
+    width: 100%;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 600px) {
+  .header-inner {
+    gap: 4px;
+  }
+  .navigator {
+    width: 130px;
+  }
+  .platform-strip {
+    gap: 14px;
+    padding-left: 12px;
+  }
+  .release-identity {
+    flex-direction: column;
+  }
+  .app-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .app-icon {
+    width: 100%;
+  }
+}
+
+.workspace {
+  min-width: 0;
+  min-height: 100vh;
+}
+.workspace > .ant-layout-footer {
+  flex: none;
+  margin-top: 12px;
+  z-index: 1;
+  color: #222;
+  font-size: 13px;
+}
+.header {
+  display: flex;
+  align-items: center;
+}
+.header-inner {
+  width: 100%;
+}
+.header > .ant-menu {
+  display: none;
+}
+.sidebar .ant-layout-sider-trigger {
+  background: #4288ba;
+}
+.brand > img {
+  max-width: 100%;
+}
+.card-open {
+  font: inherit;
+}
+.app-card {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+.app-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.app-icon {
+  margin-bottom: 18px;
+}
+.search-panel,
+.device-search {
+  background: #fafafa;
+  border-radius: 10px;
+}
+.device-table {
+  overflow-x: auto;
+}
+.device-table .ant-table {
+  min-width: 1000px;
+}
+.wizard-identity {
+  padding: 24px 20px 0;
+}
+.wizard-identity img {
+  width: 300px;
+  height: 300px;
+}
+.wizard-intro {
+  margin: 0 0 4px;
+}
+.subscriptions-layout aside {
+  width: 220px;
+  border-right: 1px solid #f0f0f0;
+  padding-right: 20px;
+}
+.subscriptions-layout aside .ant-btn {
+  text-align: left;
+}
+.search-panel .ant-select {
+  min-width: 120px;
+}
+/* Product reference spacing: inset header and a continuous platform/content panel. */
+.header {
+  margin: 14px 20px 18px;
+  border-radius: 10px;
+  height: 64px;
+  line-height: 64px;
+}
+.platform-strip {
+  margin: 0 20px;
+  padding: 12px 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 10px 10px 0 0;
+}
+.main {
+  margin: 0 20px;
+  border-radius: 0 0 10px 10px;
+}
+.app-card .app-icon {
+  width: 164px;
+  height: 145px;
+  margin: -12px -12px 22px;
+  border-radius: 10px;
+}
+.app-card .muted {
+  display: block;
+  margin-top: 24px;
+  font-size: 14px;
+}
+.card-actions {
+  position: relative;
+  height: 18px;
+}
+.card-actions .heart {
+  position: absolute;
+  right: -7px;
+  bottom: 3px;
+  color: #ffa940;
+}
+.subscriptions-layout aside section {
+  background: #fafafa;
+  padding: 14px 10px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #eee;
+}
+.subscriptions-layout aside section h4 {
+  margin: 0 8px 8px;
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .header {
+    margin: 8px 12px 12px;
+  }
+  .platform-strip {
+    margin: 0 12px;
+  }
+  .main {
+    margin: 0 12px;
+  }
+  .wizard-identity img {
+    width: 130px;
+    height: 130px;
+  }
+  .subscriptions-layout aside {
+    width: 100%;
+    border-right: 0;
+  }
+}
+
+.sidebar .ant-menu-dark .ant-menu-item-selected {
+  background: #f0f2f5;
+  color: #111;
+  border-radius: 0;
+}
+.sidebar .ant-menu-item {
+  margin-inline: 3px;
+  border-radius: 0;
+  width: calc(100% - 3px);
+}
+
+.language-select {
+  width: 120px;
+}
+.language-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.language-label img.emoji {
+  height: 14px;
+  width: 14px;
+  vertical-align: middle;
+}
+.tour-profile .avatar.ant-avatar {
+  background-color: #4288ba;
+  color: #fff;
+}
+.language-menu .ant-select-item {
+  min-height: 32px;
+  padding: 5px 12px;
+}

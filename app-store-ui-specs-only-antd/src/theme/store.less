@@ -1,0 +1,594 @@
+@primary-color: #4288ba;
+@font-face {
+  font-family: Poppins;
+  src: url('/store/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Poppins;
+  src: url('/store/fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: Poppins;
+  src: url('/store/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Poppins;
+  src: url('/store/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  color: #162632;
+}
+body {
+  background: #f5f5f5;
+}
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+a {
+  color: @primary-color;
+}
+h5 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #858587;
+  letter-spacing: 0.5px;
+}
+.store-shell {
+  min-height: 100vh;
+  align-items: stretch;
+}
+.entgra-sider {
+  background: linear-gradient(#1c4c75, #4288ba) !important;
+}
+.entgra-sider .ant-layout-sider-children {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  padding-bottom: 45px;
+}
+.entgra-sider .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px;
+  height: 124px;
+}
+.entgra-sider .logo img {
+  max-width: 100%;
+  max-height: 76px;
+  object-fit: contain;
+}
+.entgra-sider .ant-menu {
+  font-size: 16px;
+  color: #b9cede;
+  border: 0;
+}
+.entgra-sider .ant-menu-sub {
+  background: transparent !important;
+}
+.entgra-sider .ant-menu-item,
+.entgra-sider .ant-menu-submenu-title {
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+}
+.entgra-sider .ant-menu-item-selected {
+  background: #f0f2f5;
+  color: #101b22;
+}
+.entgra-sider .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: white;
+}
+.entgra-sider .ant-layout-sider-trigger {
+  background: transparent;
+  color: white;
+}
+.entgra-sider .ant-menu-item-disabled {
+  color: #afc9dc !important;
+  opacity: 0.55;
+}
+.shell-body {
+  padding: 14px 20px 0;
+  min-width: 0;
+  background: #f5f5f5;
+}
+.entgra-header {
+  height: 64px;
+  line-height: normal;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+.entgra-header > .ant-menu:empty {
+  display: none;
+}
+.entgra-header > .ant-menu {
+  border: 0;
+}
+.header-spacer {
+  flex: 1;
+}
+.jump-navigator {
+  width: 200px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.jump-navigator .ant-select-selector {
+  box-shadow: none !important;
+}
+.jump-path {
+  display: block;
+  color: #8c8c8c;
+  font-size: 11px;
+}
+.language {
+  width: 140px;
+}
+.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.25em 0 0;
+  vertical-align: -0.1em;
+}
+.profile-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.shell-content {
+  background: white;
+  border-radius: 10px;
+  margin-top: 20px;
+  min-height: calc(100vh - 180px);
+}
+.platform-strip {
+  padding: 0 16px;
+}
+.platform-strip .ant-tabs-nav {
+  margin-bottom: 0;
+}
+.scene {
+  padding: 24px;
+}
+.breadcrumbs {
+  margin: 0 0 26px;
+}
+.catalogue-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.ant-segmented {
+  background: white;
+}
+.ant-segmented-item-selected {
+  color: @primary-color;
+}
+.search-collapse {
+  background: #f5f5f5;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.search-collapse .ant-collapse-content-box {
+  padding: 12px 16px !important;
+}
+.search-collapse .ant-collapse-header {
+  align-items: center !important;
+  min-height: 46px;
+}
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 165px);
+  gap: 24px;
+}
+.app-card {
+  background: #f5f5f5;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+.app-card .ant-card-cover > img {
+  width: 100%;
+  height: 145px;
+  object-fit: contain;
+  border-radius: 40px;
+}
+.app-card .ant-card-body {
+  padding: 12px;
+}
+.app-name {
+  margin: 8px 0 16px !important;
+}
+.app-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.favourite-button {
+  color: #ff9800 !important;
+  padding: 0 2px !important;
+  height: 30px;
+}
+.web-eye {
+  float: right;
+  height: 22px !important;
+}
+.app-art-placeholder {
+  height: 145px;
+  display: grid;
+  place-items: center;
+  color: @primary-color;
+  font-size: 64px;
+}
+.scroll-sentinel {
+  height: 2px;
+}
+.catalogue-empty {
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+}
+.catalogue-empty .ant-empty-description {
+  max-width: 550px;
+}
+.catalogue-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.loading {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.entgra-footer {
+  position: sticky;
+  bottom: 0;
+  height: 20px;
+  padding: 24px 10px 40px;
+  width: 100%;
+  text-align: center;
+  color: #636e72;
+  font-size: 13px;
+  background: #f5f5f5;
+}
+.entgra-footer a {
+  color: @primary-color;
+}
+.filter-row {
+  display: flex;
+  width: 100%;
+}
+.filter-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+  padding-right: 8.33%;
+}
+.filter-main > .ant-btn {
+  border-radius: 10px;
+}
+.filter-main .clear-filter {
+  position: absolute;
+  right: 0;
+}
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 37px;
+  padding: 7px 7px 7px 10px;
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+}
+.chip-divider {
+  height: 20px;
+  border-left: 1px solid #ddd;
+}
+.filter-tile {
+  border-radius: 10px;
+  margin: 0 0 3px 3px;
+}
+.filter-tile .ant-card-body {
+  padding: 3px !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.filter-tile:hover {
+  box-shadow: 0 2px 8px #ddd;
+}
+.filter-field small {
+  color: #ff4d4f;
+  display: block;
+}
+.filter-field > .ant-input {
+  min-width: 170px;
+}
+.filter-field .ant-select-selection-item {
+  font-size: 12px;
+}
+.firmware-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+.firmware-card {
+  background: #fafafa;
+}
+.firmware-mark {
+  font-size: 42px;
+  color: @primary-color;
+  margin-bottom: 18px;
+}
+.firmware-summary {
+  margin-bottom: 24px;
+}
+.release-card,
+.wizard-card {
+  margin: 0 3.5%;
+}
+.release-header,
+.wizard-release {
+  display: flex;
+  gap: 32px;
+  padding: 0 20px 26px;
+}
+.release-icon {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 30px;
+}
+.release-identity {
+  flex: 1;
+  min-width: 0;
+}
+.release-identity h2 {
+  margin-bottom: 8px;
+}
+.release-identity p {
+  margin: 12px 0;
+}
+.other-versions {
+  display: block;
+  min-width: 240px;
+  max-width: 360px;
+  margin-top: 14px;
+}
+.app-overview section {
+  margin: 24px 0;
+}
+.screenshot-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+.screenshot-strip .ant-image {
+  flex-shrink: 0;
+}
+.reviews {
+  border-top: 1px solid #eee;
+  padding-top: 24px;
+}
+.review-item {
+  width: 100%;
+  padding: 10px 0;
+}
+.review-item .review-item {
+  padding-left: 24px;
+}
+.review-item small {
+  display: block;
+  color: #858587;
+}
+.review-content {
+  white-space: pre-wrap;
+  margin-top: 10px;
+}
+.rating-summary {
+  max-width: 350px;
+  margin-top: 24px;
+}
+.wizard-release img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 40px;
+}
+.wizard-picker {
+  min-height: 110px;
+  margin-top: 20px;
+}
+.operation-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 22px 0 0;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 22px;
+}
+.identity-select {
+  width: 100%;
+  max-width: 700px;
+}
+.table-overflow {
+  overflow-x: auto;
+}
+.subscription-layout {
+  display: flex;
+  gap: 24px;
+  min-height: 350px;
+}
+.subscription-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+.subscription-sidebar .ant-card {
+  margin-bottom: 12px;
+}
+.subscription-count {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.subscription-main {
+  flex: 1;
+  min-width: 0;
+}
+.subscription-guidance {
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+}
+.group-cards {
+  padding: 24px 0;
+  display: flex;
+}
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1c4c75, #4288ba);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+.login-brand {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.login-brand img {
+  width: 200px;
+  max-height: 85px;
+  object-fit: contain;
+}
+.login-brand h2 {
+  color: white;
+}
+.login-card {
+  width: 380px;
+  max-width: 100%;
+}
+.login-card .ant-alert {
+  margin-bottom: 22px;
+}
+@media (max-width: 900px) {
+  .shell-body {
+    padding: 10px;
+  }
+  .scene {
+    padding: 18px;
+  }
+  .release-card,
+  .wizard-card {
+    margin: 0;
+  }
+  .wizard-release img {
+    width: 180px;
+    height: 180px;
+  }
+  .release-header,
+  .wizard-release {
+    gap: 20px;
+    padding: 0 0 20px;
+  }
+  .subscription-layout {
+    flex-direction: column;
+  }
+  .subscription-sidebar {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .subscription-sidebar .ant-card {
+    flex: 1;
+    min-width: 150px;
+  }
+  .jump-navigator {
+    width: 160px;
+  }
+  .entgra-header {
+    padding: 0 12px;
+    gap: 5px;
+  }
+  .language {
+    width: 125px;
+  }
+}
+@media (max-width: 600px) {
+  .release-header,
+  .wizard-release {
+    flex-direction: column;
+  }
+  .release-icon {
+    width: 120px;
+    height: 120px;
+  }
+  .app-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .jump-navigator {
+    width: 110px;
+  }
+  .language {
+    width: 110px;
+  }
+  .entgra-header > .anticon {
+    display: none;
+  }
+  .catalogue-toolbar {
+    flex-wrap: wrap;
+  }
+  .entgra-footer {
+    font-size: 11px;
+  }
+}
+.entgra-sider .ant-menu-item:not(.ant-menu-item-selected) {
+  color: #b9cede;
+}
+
+.firmware-release-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 16px 0 24px;
+}
+.firmware-release-header img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+.firmware-release-header .firmware-mark {
+  margin: 0;
+  font-size: 52px;
+}

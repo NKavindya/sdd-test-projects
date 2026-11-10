@@ -1,0 +1,126 @@
+{
+  "defaultAppTitle": "Entgra",
+  "appName": "store",
+  "serverConfig": {
+    "origin": "https://localhost:9443",
+    "managedStoreApi": "/api/application-mgt-store/v1.0",
+    "invoker": {
+      "uri": "/store-ui-request-handler/invoke",
+      "store": "/application-mgt-store/v1.0",
+      "publisher": "/application-mgt-publisher/v1.0",
+      "deviceMgt": "/device-mgt/v1.0"
+    },
+    "loginUri": "/store-ui-request-handler/login",
+    "logoutUri": "/store-ui-request-handler/logout",
+    "ssoLoginUri": "/store-ui-request-handler/ssoLogin",
+    "ssoLogoutUri": "/store-ui-request-handler/ssoLogout",
+    "userUri": "/store-ui-request-handler/user",
+    "scopeUri": "/store-ui-request-handler/login-user/scopes",
+    "appUiConfigUri": "/api/device-mgt-config/v1.0/configurations/ui-config"
+  },
+  "appStates": {
+    "published": "PUBLISHED"
+  },
+  "contracts": {
+    "uiConfig": {
+      "root": ""
+    },
+    "deviceTypes": {
+      "family": "deviceMgt",
+      "path": "/device-types",
+      "rows": ""
+    },
+    "devices": {
+      "family": "deviceMgt",
+      "path": "/devices",
+      "rows": "devices",
+      "count": "count"
+    },
+    "users": {
+      "family": "deviceMgt",
+      "path": "/users/search",
+      "rows": "users",
+      "count": "count",
+      "value": "username",
+      "label": "username"
+    },
+    "roles": {
+      "family": "deviceMgt",
+      "path": "/roles",
+      "rows": "roles",
+      "count": "count"
+    },
+    "groups": {
+      "family": "deviceMgt",
+      "path": "/groups/hierarchy",
+      "rows": "deviceGroups",
+      "count": "count",
+      "value": "name",
+      "label": "name",
+      "children": "childrenGroups"
+    },
+    "adminGroups": {
+      "family": "deviceMgt",
+      "path": "/admin/groups/hierarchy",
+      "rows": "deviceGroups",
+      "count": "count",
+      "value": "name",
+      "label": "name",
+      "children": "childrenGroups"
+    },
+    "categories": {
+      "family": "publisher",
+      "path": "/applications/categories",
+      "rows": "",
+      "value": "categoryName",
+      "label": "categoryName"
+    },
+    "tags": {
+      "family": "publisher",
+      "path": "/applications/tags",
+      "rows": "",
+      "value": "tagName",
+      "label": "tagName"
+    },
+    "deviceFields": {
+      "id": "id",
+      "name": "name",
+      "owner": "enrolmentInfo.owner",
+      "lastUpdated": "lastUpdatedTimeStamp",
+      "status": "enrolmentInfo.status",
+      "ownership": "enrolmentInfo.ownership",
+      "identifier": "deviceIdentifier"
+    },
+    "subscriptionStatus": {
+      "subscribed": "subscribed",
+      "unsubscribed": "unsubscribed"
+    }
+  },
+  "theme": {
+    "primaryColor": "#4288BA",
+    "logo": "/store/images/logo-white.png",
+    "logoIcon": "/store/images/logo-white-cropped.png"
+  },
+  "defaultPlatformIcons": {
+    "default": {
+      "icon": "global",
+      "color": "#535c68",
+      "theme": "outlined"
+    },
+    "android": {
+      "icon": "android",
+      "color": "#7db343",
+      "theme": "filled"
+    },
+    "ios": {
+      "icon": "apple",
+      "color": "#535c68",
+      "theme": "filled"
+    },
+    "windows": {
+      "icon": "windows",
+      "color": "#008cc4",
+      "theme": "filled"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "env": { "browser": true, "node": true, "es2022": true },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": { "requireConfigFile": true, "sourceType": "module" },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "plugins": ["react-hooks", "prettier"],
+  "settings": { "react": { "version": "detect" } },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-console": "error",
+    "prettier/prettier": "error"
+  }
+}

@@ -1,0 +1,7 @@
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './services/internationalization';
+import 'antd/dist/reset.css';
+import './styles.css';
+
+createRoot(document.getElementById('root')).render(<App />);
