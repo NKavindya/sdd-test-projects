@@ -1,0 +1,51 @@
+{
+  "name": "entgra-app-store-specs-heroui",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "lint": "tsc -b && eslint eslint.config.js tests/*.mjs",
+    "format": "prettier --write src tests *.json *.ts *.js *.html docs README.md",
+    "test": "node tests/run.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@heroui/react": "3.2.7",
+    "@heroui/styles": "3.2.7",
+    "tailwindcss": "4.3.5",
+    "react-aria": "3.53.1",
+    "react-aria-components": "1.22.1",
+    "@react-aria/ssr": "3.10.1",
+    "@react-aria/utils": "3.34.1",
+    "@internationalized/date": "3.12.4",
+    "react-router": "7.18.5",
+    "react-router-dom": "7.18.5",
+    "axios": "1.21.1",
+    "i18next": "27.1.1",
+    "react-i18next": "18.0.1",
+    "dayjs": "1.11.23",
+    "lucide-react": "1.72.0",
+    "@tanstack/react-table": "9.3.1",
+    "react-joyride": "3.2.0",
+    "react-twemoji": "0.7.2",
+    "html-react-parser": "6.1.9",
+    "react-intersection-observer": "11.0.1"
+  },
+  "devDependencies": {
+    "vite": "8.3.8",
+    "@vitejs/plugin-react": "6.3.0",
+    "typescript": "5.9.3",
+    "@tailwindcss/vite": "4.3.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "prettier": "3.9.10"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
