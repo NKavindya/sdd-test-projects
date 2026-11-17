@@ -1,0 +1,16 @@
+.taxonomy-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 28px;
+  margin-top: 28px;
+  border-top: 1px dashed #eee;
+}
+.taxonomy-list .mantine-Badge-root {
+  height: 24px;
+  font-size: 11px;
+}
+.taxonomy-list .mantine-ActionIcon-root:disabled {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+}

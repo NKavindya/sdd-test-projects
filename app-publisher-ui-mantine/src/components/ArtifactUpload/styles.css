@@ -1,0 +1,21 @@
+.upload-field > .mantine-SegmentedControl-root {
+  margin-bottom: 12px;
+}
+.horizontal-field {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.required {
+  color: #fa5252;
+}
+.uploaded-file {
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 12px;
+}
+.uploaded-preview {
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
+}

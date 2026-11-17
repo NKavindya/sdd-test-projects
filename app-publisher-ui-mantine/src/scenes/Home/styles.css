@@ -1,0 +1,141 @@
+.publisher-sider {
+  background: linear-gradient(170deg, #1c4c75 40%, #4288ba);
+  border: 0;
+  color: #b3c6d7;
+}
+.brand {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  overflow: hidden;
+}
+.brand img {
+  width: 64px;
+  height: 68px;
+  max-height: 70px;
+  object-fit: contain;
+}
+.brand {
+  gap: 12px;
+}
+.brand span {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+.mantine-AppShell-navbar[style*="80"] .brand {
+  padding: 16px;
+}
+.mantine-AppShell-navbar[style*="80"] .brand img {
+  width: 48px;
+}
+.sider-scroll {
+  flex: 1;
+  overflow: auto;
+}
+.publisher-sider .mantine-NavLink-root {
+  min-height: 44px;
+  color: #b8cbdc;
+  padding: 10px 24px;
+}
+.publisher-sider .mantine-NavLink-label {
+  font-size: 15px;
+}
+.publisher-sider .mantine-NavLink-children {
+  padding-left: 0;
+}
+.publisher-sider
+  .mantine-NavLink-children
+  .mantine-NavLink-children
+  .mantine-NavLink-root {
+  padding-left: 66px;
+}
+.publisher-sider .mantine-NavLink-root[data-active] {
+  background: #f0f2f4;
+  color: #111;
+}
+.publisher-sider .mantine-NavLink-root:hover {
+  background: #ffffff12;
+  color: white;
+}
+.publisher-sider .mantine-NavLink-root[data-active]:hover {
+  background: #eef2f5;
+  color: #111;
+}
+.publisher-root > .mantine-NavLink-body {
+  color: #fff;
+}
+.collapse-nav {
+  margin: 10px auto 14px;
+  flex-shrink: 0;
+}
+.entgra-header {
+  height: 64px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+.jump-select {
+  width: min(380px, 35vw);
+}
+.jump-select input {
+  border: 0;
+  border-bottom: 1px solid #d7d7d7;
+  border-radius: 0;
+  padding-left: 0;
+}
+.scene-outlet {
+  min-height: calc(100vh - 168px);
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.entgra-footer {
+  text-align: center;
+  padding: 22px 10px 4px;
+  font-size: 12px;
+}
+.entgra-footer a {
+  color: #4288ba;
+}
+.mantine-AppShell-main {
+  padding-top: 10px;
+  background: #f3f4f5;
+}
+@media (max-width: 600px) {
+  .entgra-header {
+    padding: 0 10px;
+  }
+  .entgra-header {
+    gap: 8px;
+  }
+  .entgra-header > .mantine-Group-root:first-child {
+    flex: 1;
+    min-width: 0;
+  }
+  .entgra-header > .mantine-Group-root:first-child > svg {
+    display: none;
+  }
+  .jump-select {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+  }
+  .entgra-header .mantine-Burger-root {
+    flex-shrink: 0;
+  }
+  .entgra-header > .mantine-Group-root:last-child {
+    flex-shrink: 0;
+  }
+  .entgra-header > .mantine-Group-root:last-child {
+    gap: 6px;
+  }
+  .scene-outlet {
+    min-height: calc(100vh - 150px);
+  }
+}

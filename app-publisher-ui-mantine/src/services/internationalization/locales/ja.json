@@ -1,0 +1,20 @@
+{
+  "Applications": "アプリケーション",
+  "Firmware": "ファームウェア",
+  "Add New App": "アプリを追加",
+  "Configurations": "設定",
+  "General": "一般",
+  "Service Providers": "サービスプロバイダー",
+  "Public App": "公開アプリ",
+  "Enterprise App": "企業向けアプリ",
+  "Web App": "Webアプリ",
+  "Navigate me to…": "移動先…",
+  "Logout": "ログアウト",
+  "Home": "ホーム",
+  "Cancel": "キャンセル",
+  "Save": "保存",
+  "Back": "戻る",
+  "Continue": "続行",
+  "Submit": "送信",
+  "No data": "データなし"
+}

@@ -1,0 +1,42 @@
+.create-firmware-card {
+  border: 1px dashed #d9dcdf;
+  border-radius: 10px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: white;
+}
+.create-firmware-card:hover {
+  background: #f6fbff;
+  border-color: #4288ba;
+}
+.firmware-card-main {
+  background: none;
+  border: 0;
+  padding: 24px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.firmware-card-actions {
+  border-top: 1px solid #eee;
+  padding: 10px;
+}
+.firmware-summary {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.text-link {
+  border: 0;
+  background: none;
+  color: #4288ba;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}

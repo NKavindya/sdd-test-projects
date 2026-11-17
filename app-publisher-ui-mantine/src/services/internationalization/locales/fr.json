@@ -1,0 +1,20 @@
+{
+  "Applications": "Applications",
+  "Firmware": "Micrologiciel",
+  "Add New App": "Ajouter une application",
+  "Configurations": "Configuration",
+  "General": "Général",
+  "Service Providers": "Fournisseurs de services",
+  "Public App": "Application publique",
+  "Enterprise App": "Application d’entreprise",
+  "Web App": "Application web",
+  "Navigate me to…": "Accéder à…",
+  "Logout": "Déconnexion",
+  "Home": "Accueil",
+  "Cancel": "Annuler",
+  "Save": "Enregistrer",
+  "Back": "Retour",
+  "Continue": "Continuer",
+  "Submit": "Envoyer",
+  "No data": "Aucune donnée"
+}

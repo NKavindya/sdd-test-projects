@@ -1,0 +1,80 @@
+.wizard-wrap {
+  max-width: 1100px;
+  width: 72%;
+  margin: 28px auto 48px;
+}
+.wizard-form {
+  width: 70%;
+  margin: 0 auto;
+}
+.wizard-form > .mantine-Stack-root {
+  gap: 22px;
+}
+.wizard-form .mantine-InputWrapper-label {
+  margin-bottom: 7px;
+}
+.upload-field > .mantine-SegmentedControl-root {
+  margin-bottom: 12px;
+}
+.horizontal-field {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.required {
+  color: #fa5252;
+}
+.uploaded-file {
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 12px;
+}
+.result-icon {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  color: white;
+  border-radius: 50%;
+}
+.result-icon.success {
+  background: #52c41a;
+}
+.result-icon.failure {
+  background: #fa5252;
+}
+@media (min-width: 1450px) {
+  .wizard-wrap {
+    width: 67%;
+  }
+  .wizard-form {
+    width: 65%;
+  }
+}
+@media (max-width: 1000px) {
+  .wizard-wrap {
+    width: 90%;
+  }
+  .wizard-form {
+    width: 85%;
+  }
+}
+@media (max-width: 600px) {
+  .wizard-wrap {
+    width: calc(100% - 28px);
+  }
+  .wizard-form {
+    width: 100%;
+  }
+  .wizard-wrap .mantine-Stepper-stepLabel {
+    font-size: 11px;
+  }
+  .wizard-wrap .mantine-Stepper-stepBody {
+    margin-left: 4px;
+  }
+  .wizard-wrap .mantine-Stepper-stepIcon {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+  }
+}

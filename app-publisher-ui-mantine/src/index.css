@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  color: #161a1d;
+  font-size: 14px;
+  background: #f3f4f5;
+}
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+a {
+  color: #4288ba;
+  text-decoration: none;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #4288ba;
+  outline-offset: 3px;
+}
+.page-heading {
+  padding: 12px 20px 30px;
+  background: #fff;
+  border-bottom: 1px solid #eceef0;
+}
+.page-title {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  position: relative;
+  font-size: 16px;
+  padding: 0 0 14px;
+}
+.page-title:after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  right: -16px;
+  bottom: 0;
+  height: 3px;
+  background: #4288ba;
+}
+.page-heading .mantine-Breadcrumbs-root {
+  font-size: 14px;
+  color: #8c959e;
+}
+.page-heading .mantine-Breadcrumbs-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.page-content {
+  padding: 24px;
+}
+.entgra-table {
+  font-size: 13px;
+  min-width: 650px;
+}
+.entgra-table thead {
+  background: #f8f9fa;
+}
+.entgra-table th {
+  font-weight: 600;
+  border: 0;
+}
+.entgra-table td {
+  border-color: #eeeff1;
+}
+.search-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.search-toggle {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 0;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+}
+.search-content {
+  padding: 8px 16px 26px;
+}
+.filter-editor {
+  border-radius: 10px;
+  background: white;
+  padding: 3px;
+}
+.filter-chip {
+  height: 37px;
+  max-width: 100%;
+  color: #262626;
+  border-color: #ddd;
+  font-weight: 400;
+  text-transform: none;
+  padding: 7px 10px;
+  border-radius: 10px;
+}
+.dashed {
+  border-style: dashed;
+}
+.mantine-Button-root {
+  font-weight: 400;
+}
+.mantine-Table-tr {
+  transition: background 0.12s;
+}
+.muted {
+  color: #939ba3;
+}
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 28px;
+}
+@media (max-width: 600px) {
+  .page-content {
+    padding: 14px;
+  }
+  .page-heading {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
