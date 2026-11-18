@@ -1,4 +1,22 @@
-import { Alert, Center, Stack, Title } from "@mantine/core";
+/*
+ * Copyright (C) 2018 - 2024 Entgra (Pvt) Ltd, Inc - All Rights Reserved.
+ *
+ * Unauthorised copying/redistribution of this file, via any medium is strictly prohibited.
+ *
+ * Licensed under the Entgra Commercial License, Version 1.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       https://entgra.io/licenses/entgra-commercial/1.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+import { Center, Stack, Title } from "@mantine/core";
 import { type ReactNode, lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Busy, PermissionResult } from "./components";
@@ -6,6 +24,11 @@ import Applications from "./scenes/Applications";
 import Home from "./scenes/Home";
 import Login from "./scenes/Login";
 import { useSession } from "./services/session";
+const AndroidEnterprise = lazy(() => import("./scenes/AndroidEnterprise"));
+const AppleVpp = lazy(() => import("./scenes/AppleVpp"));
+const AndroidEnterprisePage = lazy(
+  () => import("./scenes/AndroidEnterprisePage"),
+);
 const Release = lazy(() => import("./scenes/Release"));
 const Create = lazy(() => import("./scenes/Create"));
 const Firmware = lazy(() => import("./scenes/Firmware"));
@@ -41,18 +64,6 @@ function Protected() {
       to={`/login?redirect=${encodeURIComponent("/app-publisher" + location.pathname + location.search)}`}
       replace
     />
-  );
-}
-function Deferred({ label }: { label: string }) {
-  return (
-    <Center mih={450}>
-      <Stack maw={550}>
-        <Title order={2}>{label}</Title>
-        <Alert title="Integration deferred">
-          This integration is not available yet.
-        </Alert>
-      </Stack>
-    </Center>
   );
 }
 export default function App() {
@@ -106,6 +117,11 @@ export default function App() {
               </Gate>
             }
           />
+          <Route
+            path="/add-new-app/android-enterprise"
+            element={<AndroidEnterprise />}
+          />
+          <Route path="/add-new-app/apple-vpp" element={<AppleVpp />} />
           <Route path="/add-new-app/:variant" element={<CreateRoute />} />
           <Route
             path="/manage"
@@ -125,11 +141,7 @@ export default function App() {
           />
           <Route
             path="/manage/android-enterprise/pages/:pageName/:pageId"
-            element={
-              <Gate scope="and:enterprise:view">
-                <Deferred label="Android Enterprise" />
-              </Gate>
-            }
+            element={<AndroidEnterprisePage />}
           />
           <Route
             path="*"

@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2018 - 2024 Entgra (Pvt) Ltd, Inc - All Rights Reserved.
+ *
+ * Unauthorised copying/redistribution of this file, via any medium is strictly prohibited.
+ *
+ * Licensed under the Entgra Commercial License, Version 1.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       https://entgra.io/licenses/entgra-commercial/1.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 import {
   ActionIcon,
   AppShell,
@@ -24,6 +42,8 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import AndroidEnterpriseModal from "../../components/AndroidEnterpriseModal";
+import { integrationAccess } from "../../services/platformContracts";
 import { ConfirmAction } from "../../components";
 import { EntgraFooter } from "../../components/EntgraFooter";
 import { EntgraHeader } from "../../components/EntgraHeader";
@@ -31,13 +51,16 @@ import { EntgraSider } from "../../components/EntgraSider";
 import { useSession } from "../../services/session";
 import "./styles.css";
 export default function Home() {
-  const { has, username, logout } = useSession();
+  const { has, username, logout, scopes, androidEnterpriseToken } =
+    useSession();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [mobile, setMobile] = useState(false);
   const [confirmLogout, setConfirmLogout] = useState(false);
+  const [approveOpened, setApproveOpened] = useState(false);
+  const integrations = integrationAccess(scopes, androidEnterpriseToken);
   const entries = [
     {
       label: "Applications",
@@ -84,7 +107,10 @@ export default function Home() {
     },
   ].filter(
     (x) =>
-      has(x.scope) || (x.path === "/manage" && has("am:admin:pub:app:update")),
+      (has(x.scope) ||
+        (x.path === "/manage" && has("am:admin:pub:app:update"))) &&
+      (x.path !== "/add-new-app/android-enterprise" ||
+        integrations.androidImport),
   );
   const go = (path: string) => {
     navigate(path);
@@ -144,7 +170,8 @@ export default function Home() {
                   .map(leaf)}
               </NavLink>
             )}
-            {entries.some((x) => x.path.startsWith("/manage")) && (
+            {(entries.some((x) => x.path.startsWith("/manage")) ||
+              integrations.androidApprove) && (
               <NavLink
                 label={!collapsed && t("Configurations")}
                 aria-label="Configurations"
@@ -152,14 +179,13 @@ export default function Home() {
                 defaultOpened={location.pathname.startsWith("/manage")}
               >
                 {entries.filter((x) => x.path.startsWith("/manage")).map(leaf)}
-                {has("and:enterprise:view") && (
+                {integrations.androidApprove && (
                   <NavLink
                     label={t("Android Enterprise")}
-                    onClick={() =>
-                      go(
-                        "/manage/android-enterprise/pages/configurations/default",
-                      )
-                    }
+                    onClick={() => {
+                      setApproveOpened(true);
+                      setMobile(false);
+                    }}
                   />
                 )}
               </NavLink>
@@ -270,6 +296,11 @@ export default function Home() {
         </main>
         <EntgraFooter />
       </AppShell.Main>
+      <AndroidEnterpriseModal
+        opened={approveOpened}
+        token={androidEnterpriseToken}
+        onClose={() => setApproveOpened(false)}
+      />
       <ConfirmAction
         opened={confirmLogout}
         title="Confirm logout"

@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2018 - 2024 Entgra (Pvt) Ltd, Inc - All Rights Reserved.
+ *
+ * Unauthorised copying/redistribution of this file, via any medium is strictly prohibited.
+ *
+ * Licensed under the Entgra Commercial License, Version 1.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       https://entgra.io/licenses/entgra-commercial/1.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 import {
   ActionIcon,
   Badge,
@@ -30,6 +48,8 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { integrationAccess } from "../../services/platformContracts";
 import { useNavigate } from "react-router-dom";
 import {
   AppIcon,
@@ -46,6 +66,7 @@ import { applicationFilter } from "../../services/contracts.mjs";
 import { useResource } from "../../services/hooks";
 import { useSession } from "../../services/session";
 import type { Filter } from "../../services/types";
+import ManagedConfigurations from "./components/ManagedConfigurations";
 import "./styles.css";
 export function PlatformIcon({ type }: { type: string }) {
   const Icon =
@@ -75,10 +96,19 @@ export function AppDetailsDrawer({
   onClose: () => void;
   onChanged: () => void;
 }) {
-  const { has } = useSession();
+  const { has, scopes, androidEnterpriseToken } = useSession();
+  const { t } = useTranslation();
+  const managedConfigurationsAllowed = integrationAccess(
+    scopes,
+    androidEnterpriseToken,
+  ).managedConfigurations;
   const navigate = useNavigate();
   const resource = useResource(() => api.app(id!), [id], id !== null);
   const app = resource.data;
+  const packageName =
+    app?.packageName || app?.applicationReleases?.[0]?.packageName;
+  const [managedOpened, setManagedOpened] = useState(false);
+  const [managedUnavailable, setManagedUnavailable] = useState(false);
   const [editing, setEditing] = useState<string>();
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
@@ -164,19 +194,27 @@ export function AppDetailsDrawer({
                         Hide
                       </Menu.Item>
                     )}
-                    {app.isAndroidEnterpriseApp && has("am:pub:app:update") && (
-                      <Menu.Item
-                        disabled
-                        leftSection={<IconSettings size={14} />}
-                      >
-                        Managed Configurations
-                      </Menu.Item>
-                    )}
+                    {app.isAndroidEnterpriseApp &&
+                      managedConfigurationsAllowed && (
+                        <Menu.Item
+                          disabled={!packageName || managedUnavailable}
+                          title={
+                            !packageName || managedUnavailable
+                              ? t("ae.managedUnavailable")
+                              : undefined
+                          }
+                          onClick={() => setManagedOpened(true)}
+                          leftSection={<IconSettings size={14} />}
+                        >
+                          {t("ae.managedConfigurations")}
+                        </Menu.Item>
+                      )}
                     {!has("am:admin:pub:app:update") &&
                       !app.isHideableApp &&
-                      !app.isAndroidEnterpriseApp && (
-                        <Menu.Label>No actions available</Menu.Label>
-                      )}
+                      !(
+                        app.isAndroidEnterpriseApp &&
+                        managedConfigurationsAllowed
+                      ) && <Menu.Label>No actions available</Menu.Label>}
                   </Menu.Dropdown>
                 </Menu>
               </Group>
@@ -306,6 +344,19 @@ export function AppDetailsDrawer({
           )
         )}
       </Drawer>
+      {managedOpened &&
+        app?.isAndroidEnterpriseApp &&
+        managedConfigurationsAllowed &&
+        androidEnterpriseToken &&
+        packageName && (
+          <ManagedConfigurations
+            token={androidEnterpriseToken}
+            packageName={packageName}
+            onClose={() => setManagedOpened(false)}
+            onUnavailable={() => setManagedUnavailable(true)}
+            onReady={() => setManagedUnavailable(false)}
+          />
+        )}
       <Modal
         opened={!!editing}
         onClose={() => !saving && setEditing(undefined)}

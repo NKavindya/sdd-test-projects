@@ -38,7 +38,7 @@ Missing menu scopes hide their entries. Scoped deep links render a permission re
 - `public/conf/`: runtime configuration. `public/branding/`: supplied Entgra mark.
 - `tests/contracts.test.mjs`: envelope, filter, release-path, safe redirect, and chunk-boundary checks.
 
-The UI includes real application filtering/pagination, details drawer, create variants and add-release, lifecycle/history, release editing, firmware, category/tag operations, and best-effort service-provider connection. AE/VPP are deferred stubs. Read [GAPS.md](GAPS.md) for limits and unverified paths.
+The UI includes real application filtering/pagination, details drawer, create variants and add-release, lifecycle/history, release editing, firmware, category/tag operations, and best-effort service-provider connection. Android Enterprise includes token bootstrap, package import, and the Configurations Google Play modal. Apple VPP provides the instructional page and metadata-gated sync action. Read [GAPS.md](GAPS.md) for limits and unverified paths.
 
 Mantine packages are pinned to `9.8.1`, React to `^19.2.0`, and React Router to `7.18.5`. Poppins and `#4288BA` are the base font/color. Tabler supplies icons. The private `entgra-icons-react` package is omitted because its available version declares a React 16 peer dependency.
 
@@ -70,3 +70,20 @@ Specifications define behavior; skills define implementation workflow. All appli
 - Shared component SPECs: `/home/nkavindya/GitRepositories/EntgraLibraries/ui-components-specifications/` (EntgraFooter/Header/Sider/PageHeader/Table/SearchFilter/PublisherFilterForm/AppCreationForm and its Details/Upload/ArtifactUpload subforms).
 - Development skills: `/home/nkavindya/GitRepositories/EntgraLibraries/ai-skills/ui-application-development/`, README reading order and all requested standards, spec-driven, dependencies, routing, authentication, API/data, forms, components, design, i18n, accessibility, security, state, testing, and build/release skills.
 - Seed only: `/home/nkavindya/GitRepositories/EntgraUEM/proprietary-commons/components/ui/io.entgra.proprietary.commons.application.mgt.publisher.ui/react-app/public/conf/config.json`.
+
+## Android Enterprise and Apple VPP
+
+These are active integrations, using the updated `create-app/android-enterprise-sync.md`, `apple-vpp-sync.md`, architecture, sider, and `publisher-api/dependency-apis.md` §4.1–§5.
+
+- After a successful session/scopes bootstrap, the optional Android enterprise store-URL request loads an in-memory `androidEnterpriseToken`. Failure (including 404) leaves it null without blocking login. Tokens are cleared on session expiry/logout and are never persisted or logged.
+- AE import requires the token and `and:enterprise:view`. Its two-step package form maps 200/404/409/other outcomes to Spec copy and rejects blank packages before any request. The success Result links to Applications.
+- Configurations → Android Enterprise is token-gated and opens the Play approve modal; it does not change routes. The orphaned AE manage hub is not implemented.
+- Apple VPP requires `am:store:vpp:assets:modify`. DEP metadata is fetched only with `dm:metadata:view`; a truthy `metaValue` enables Sync Apps. Sync uses the configured Store invoker segment and reports the specified success/failure messages.
+- The drawer's Managed Configurations control requires an AE app, token, and `and:enterprise:modify`. It reads the package configuration and loads `https://apis.google.com/js/client.js` once. `gapi.iframes` opens MCM, and `onconfigupdated`/`onconfigdeleted` persist the documented POST/PUT/DELETE contracts. Saves are serialized; failures never produce success toasts. If the SDK or initial API fails, the modal offers Retry and the drawer action stays disabled until recovery/reload. See [Google's MCM iframe documentation](https://developers.google.com/android/work/play/emm-api/managed-configurations-iframe).
+- The optional registered store-page route remains scope-gated and can list the documented PUBLIC/android/GooglePlaySyncedApp catalogue. Full store-layout writes remain limited by unverified DTOs; see GAPS.
+
+All new integration copy has translation keys with English, Spanish, French, and Japanese entries. Existing non-integration translation gaps are unchanged. New/touched component files carry the Entgra commercial licence header.
+
+React standards: the requested `https://github.com/entgra-ai/engineering-constitutions.git` clone was attempted but required unavailable GitHub authentication. The existing workspace fork at `/home/nkavindya/GitRepositories/EntgraLibraries/engineering-constitutions/constitutions/frameworks/react/` was read and applied (README, react.md, all topic guides, and TypeScript constitution).
+
+`npm test` includes integration transport tests with an isolated axios adapter (no production mocks), covering token failure handling, gates, encoded paths, blank input, exact status copy, VPP segments, and MCM DTOs. Live validation evidence and enrollment-dependent limits are listed in GAPS.

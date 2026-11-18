@@ -1,0 +1,38 @@
+.ae-import-content {
+  padding: 40px;
+  max-width: 1280px;
+  margin: auto;
+}
+.ae-package-form {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 0 20px;
+}
+@media (max-width: 600px) {
+  .ae-import-content {
+    padding: 20px 14px;
+  }
+}
+.ae-package-form .mantine-InputWrapper-root {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: center;
+}
+.ae-package-form .mantine-InputWrapper-label {
+  text-align: right;
+}
+.ae-package-form .mantine-InputWrapper-error {
+  grid-column: 2;
+}
+@media (max-width: 600px) {
+  .ae-package-form .mantine-InputWrapper-root {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ae-package-form .mantine-InputWrapper-label {
+    text-align: left;
+  }
+  .ae-package-form .mantine-InputWrapper-error {
+    grid-column: 1;
+  }
+}

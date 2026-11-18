@@ -9,7 +9,11 @@ import type {
   Release,
   RuntimeConfig,
 } from "./types";
+import { ENTERPRISE_ROOT } from "./platformContracts";
 let config: RuntimeConfig;
+export type RequestOptions = AxiosRequestConfig & {
+  expireSessionOn401?: boolean;
+};
 export const http = axios.create({ withCredentials: true, timeout: 60000 });
 export const configureApi = (value: RuntimeConfig) => {
   config = value;
@@ -37,16 +41,18 @@ export async function request<T>(
   method: Method,
   url: string,
   data?: unknown,
-  options?: AxiosRequestConfig,
+  options?: RequestOptions,
 ): Promise<T> {
+  const { expireSessionOn401 = true, ...axiosOptions } = options || {};
   try {
-    const response = await http.request({ method, url, data, ...options });
+    const response = await http.request({ method, url, data, ...axiosOptions });
     return unwrap(response.data) as T;
   } catch (error) {
     if (axios.isCancel(error)) throw error;
     if (axios.isAxiosError(error)) {
       const status = error.response?.status || 0;
       if (
+        expireSessionOn401 &&
         status === 401 &&
         !url.includes("/user") &&
         !url.includes("/login") &&
@@ -89,6 +95,19 @@ export function invoke<T>(
     config.serverConfig.invoker.uri +
       config.serverConfig.invoker[segment] +
       path,
+    data,
+    options,
+  );
+}
+export function invokeEnterprise<T>(
+  method: Method,
+  path: string,
+  data?: unknown,
+  options?: RequestOptions,
+) {
+  return request<T>(
+    method,
+    config.serverConfig.invoker.uri + ENTERPRISE_ROOT + path,
     data,
     options,
   );

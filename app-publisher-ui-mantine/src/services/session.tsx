@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2018 - 2024 Entgra (Pvt) Ltd, Inc - All Rights Reserved.
+ *
+ * Unauthorised copying/redistribution of this file, via any medium is strictly prohibited.
+ *
+ * Licensed under the Entgra Commercial License, Version 1.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       https://entgra.io/licenses/entgra-commercial/1.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 import { Alert, Button, Center, Loader, Stack, Text } from "@mantine/core";
 import {
   createContext,
@@ -5,15 +23,18 @@ import {
   useContext,
   useEffect,
   useState,
+  useRef,
   type ReactNode,
 } from "react";
 import { configureApi, invoke, request } from "./api";
 import { parseScopes, safeRedirect } from "./contracts.mjs";
+import { platformApi } from "./platformIntegrations";
 import type { RuntimeConfig } from "./types";
 interface Session {
   config: RuntimeConfig;
   username: string;
   scopes: string[];
+  androidEnterpriseToken: string | null;
   isSso: boolean;
   uiConfig: any;
   has: (scope: string) => boolean;
@@ -27,6 +48,10 @@ export const useSession = () => {
   return value;
 };
 export function SessionProvider({ children }: { children: ReactNode }) {
+  const generation = useRef(0);
+  const [androidEnterpriseToken, setAndroidEnterpriseToken] = useState<
+    string | null
+  >(null);
   const [config, setConfig] = useState<RuntimeConfig>();
   const [username, setUsername] = useState("");
   const [scopes, setScopes] = useState<string[]>([]);
@@ -34,6 +59,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [fatal, setFatal] = useState("");
   const loadSession = useCallback(async (cfg: RuntimeConfig) => {
+    const current = ++generation.current;
+    setAndroidEnterpriseToken(null);
     configureApi(cfg);
     let user = "";
     let granted: string[] = [];
@@ -79,6 +106,11 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         /* Optional branding: retain defaults */
       }
     }
+    const token = user
+      ? await platformApi.enterpriseToken(window.location.origin)
+      : null;
+    if (current !== generation.current) return;
+    setAndroidEnterpriseToken(token);
     setUiConfig(ui || {});
     setUsername(user);
     setScopes(granted);
@@ -104,10 +136,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     })();
     return () => {
       active = false;
+      generation.current++;
     };
   }, [loadSession]);
   useEffect(() => {
     const expire = () => {
+      generation.current++;
+      setAndroidEnterpriseToken(null);
       setUsername("");
       setScopes([]);
     };
@@ -137,11 +172,14 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         config,
         username,
         scopes,
+        androidEnterpriseToken,
         uiConfig,
         isSso: uiConfig.isSsoEnable === true || uiConfig.isSsoEnable === "true",
         has: (scope) => scopes.includes(scope),
         refresh: () => loadSession(config),
         logout: async () => {
+          generation.current++;
+          setAndroidEnterpriseToken(null);
           if (
             uiConfig.isSsoEnable === true ||
             uiConfig.isSsoEnable === "true"
