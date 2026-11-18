@@ -190,7 +190,10 @@ export async function uploadFile(
     onProgress(Math.min(100, Math.round(((index + 1) / ranges.length) * 100)));
   }
   const uuid = transfer.split("/").pop();
-  return `${config.serverConfig.invoker.uri}/uploads/${uuid}/${encodeURIComponent(file.name)}`;
+  // Create/update APIs download media via absolute HTTP(S) URLs. Use the current
+  // page origin so the host matches this deployment’s request-handler; relative
+  // invoker paths are rejected (MalformedURLException / "Malformed URL link…").
+  return `${window.location.origin}${config.serverConfig.invoker.uri}/uploads/${uuid}/${file.name}`;
 }
 export { CHUNK_SIZE };
 export function mediaUrl(value?: string) {
